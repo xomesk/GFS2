@@ -1,0 +1,12 @@
+#cloud-config
+users:
+  - name: centos
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh_authorized_keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJ03qd0rjdFtQbIWXJ1cMKp9VhagLeUDdGJ3aibpvVJOHvZP4gnFBim9OrW8ndJZjGxlycGtgUp7CX187zJ0eXPwllmVRVy7TnxQSJN2YcMFG1S0SS74pb6d/+F6soBbTluql1wa/2XEb86FZc1dYsLEkUw34AiNBDrIHPgB2zdrXCidKX1nfPjRskAqMF5qf02Cv8AnSIb+SJMj1eBQoSvl7AjOMplm0VXglGLi5cb+AEIVF1dfBuYL2bA/DHuWSOUGLg+jRQGLer7DDdojCrK4DqrbA3r/3ppCLQ6hYvgGsbz0LhTYCTA9cgvkQQQaiZqEC1EhMs/J2haE9gtilT"
+
+packages:
+  - epel-release
+  - nginx
