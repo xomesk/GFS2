@@ -1,0 +1,14 @@
+---
+- name: install and setup iscsi
+  hosts: all 
+  become: yes
+  tasks:
+    - name: update packages
+      yum:
+        name: '*'
+        state: latest
+    - name:
+      yum: 
+        
+
+

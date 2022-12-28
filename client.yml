@@ -1,0 +1,9 @@
+---
+  - name: install iscsi, clvm, pacemar
+    become: yes
+    hosts: yes
+    tasks:
+      - name: Update all packeges
+        yum:
+          name: '*'
+          v
