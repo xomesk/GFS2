@@ -1,0 +1,24 @@
+---
+galaxy_info:
+  author: Ondrej Faměra
+  description: targetcli target iSCSI role.
+  license: GPLv3
+  min_ansible_version: 2.5
+  platforms:
+  - name: EL
+    versions:
+    - 7
+    - 8
+  - name: SLES
+    versions:
+    - 12
+    - 15
+  - name: opensuse
+    versions:
+    - 15
+  galaxy_tags:
+  - system
+  - storage
+  - iscsi
+dependencies:
+  - { role: OndrejHome.targetcli-modules }
