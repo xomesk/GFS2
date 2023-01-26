@@ -54,9 +54,8 @@ resource "yandex_compute_instance" "node-clent-centos" {
 
   metadata = {
     ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
-    user-data = "${file("user-data.yml")}"
  }
-
+depends_on = [yandex_compute_instance.node-server-centos]
 }
 
 
@@ -95,8 +94,24 @@ resource "yandex_compute_instance" "node-server-centos" {
 
   metadata = {
     ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
-    user-data = "${file("user-data.yml")}"
+#    user-data = "${file("user-data.yml")}" 
  }
+
+    connection {
+    type        = "ssh"
+    user        = "centos"
+    private_key = file("~/.ssh/id_rsa")
+    host        = yandex_compute_instance.node-server-centos.network_interface.0.nat_ip_address
+  }
+
+  provisioner "remote-exec" {
+    inline = ["echo 'Im ready!'"]
+
+  }
+
+  provisioner "local-exec" {
+    command = "ansible-galaxy install --roles-path ./roles/OndrejHome.targetcli ; ansible-playbook -u centos -i '${self.network_interface.0.nat_ip_address},' --private-key ~/.ssh/id_rsa iscsi-server.yml"
+  }
 
 }
 
