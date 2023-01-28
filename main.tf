@@ -110,7 +110,7 @@ resource "yandex_compute_instance" "node-server-centos" {
   }
 
   provisioner "local-exec" {
-    command = "ansible-galaxy install --roles-path ./roles/OndrejHome.targetcli ; ansible-playbook -u centos -i '${self.network_interface.0.nat_ip_address},' --private-key ~/.ssh/id_rsa iscsi-server.yml"
+    command = "ansible-playbook -u centos -i '${self.network_interface.0.nat_ip_address},' --private-key ~/.ssh/id_rsa iscsi-server.yml"
   }
 
 }

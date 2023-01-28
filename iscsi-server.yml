@@ -1,24 +1,7 @@
 ---
-  - name: update yum 
+  - name: install iscsi server  
     become: yes
     hosts: all
-    tasks: 
-      - name: yum update 
-        yum:
-          name: '*'
-          state: latest
-          update_cache: yes
-        name: install ansible galaxy
-        yum:
-          name: 
-            - epel-release
-            - ansible 
-              #     - name: install ansible galaxy
-              #       shell: ansible-galaxy install OndrejHome.targetcli
-
-  - name: install iscsi server
-    become: yes
-    hosts: all 
     roles:
       - { role: OndrejHome.targetcli }
     vars:
